@@ -3,11 +3,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import '../styles/Canvas.css'
 
-const Canvas = ({ components, selectedComponent, setSelectedComponent}) => {
+const Canvas = ({ components, selectedComponent, setSelectedComponent, handleSelectedComponent, selectedRef}) => {
 
   const handleSelect = (component) => {
     setSelectedComponent(component);
-    console.log('Selected component:', component);
   };
 
   return (
@@ -17,7 +16,7 @@ const Canvas = ({ components, selectedComponent, setSelectedComponent}) => {
           <div className="canvas">
             {components.map((component, index) => (
               <Draggable key={index} onStop={() => handleSelect(component) } bounds="parent">
-                <div className={`draggable-component ${selectedComponent === component ? 'selected' : ''}`}>{component}</div>
+                <div className={`draggable-component ${selectedComponent === component ? 'selected' : ''}`}  ref={selectedRef} >{component}</div>
               </Draggable>
             ))}
           </div>

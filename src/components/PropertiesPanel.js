@@ -1,66 +1,43 @@
 import { Form, InputGroup } from 'react-bootstrap';
 
+import TextProperties from './TextProperties';
+import ImageProperties from './ImageProperties';
 import '../styles/PropertiesPanel.css'
 
-const PropertiesPanel = ({ selectedComponent }) => {
+const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
 
   if (!selectedComponent) {
     return null;
   }
 
-  const { style, width } = selectedComponent.props;
-
-  console.log('selectedComponent = ', selectedComponent.props.className)
-
-  const textAttributes = (
-    <>
-      <Form.Label><h2>Edit Attributes</h2></Form.Label>
-      <Form>
-        <Form.Group controlId="formTextColor">
-          <Form.Label>Text Color</Form.Label>
-          <InputGroup>
-            <Form.Control
-              type="color"
-              value={selectedComponent?.style?.color}
-              onChange={(e) => handleEdit('color', e.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-        {/* Add more input fields for other text attributes */}
-      </Form>
-    </>
-  );
-
-  const imageAttributes = (
-    <>
-      <Form.Label><h2>Edit Attributes</h2></Form.Label>
-      <Form>
-        <Form.Group controlId="formImageWidth">
-          <Form.Label>Width</Form.Label>
-          <InputGroup>
-            <Form.Control
-              type="number"
-              value={selectedComponent.width}
-              onChange={(e) => handleEdit('width', e.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-        {/* Add more input fields for other image attributes */}
-      </Form>
-    </>
-  );
-
   const handleEdit = (attribute, value) => {
-    console.log(`Editing ${attribute} to ${value} for component:`, selectedComponent);
+    console.log('attribute, value - ', attribute, value)
+    const currentStyle = selectedRef?.current?.getAttribute('style') || '';
+
+    const currentStyleObject = currentStyle
+      .split(';')
+      .filter(Boolean)
+      .reduce((styleObject, style) => {
+        const [key, val] = style.split(':').map(s => s.trim());
+        styleObject[key] = val;
+        return styleObject;
+      }, {});
+
+    currentStyleObject[attribute] = value;
+
+    const newStyle = Object.entries(currentStyleObject)
+      .map(([key, val]) => `${key}:${val}`)
+      .join(';');
+
+    selectedRef?.current?.setAttribute('style', newStyle);
   }
 
   if (['text-component', 'paragraph-component'].includes(selectedComponent.props.className)) {
-    return <>{textAttributes}</>
+    return <><TextProperties handleEdit={handleEdit} selectedComponent={selectedComponent} /></>
   } else if (selectedComponent.props.className === 'image-component') {
-    return <>{imageAttributes}</>
+    return <><ImageProperties handleEdit={handleEdit} selectedComponent={selectedComponent} /></>
   }
 
-  // Default case or additional component types can be handled here
   return null;
 };
 export default PropertiesPanel;

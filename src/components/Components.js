@@ -8,7 +8,7 @@ const Components = ({ setCurrentComponents }) => {
     let newComponent;
     switch (type) {
       case 'text':
-        newComponent = <div className="text-component">Text Component</div>;
+        newComponent = <div className="text-component" style={{}} >Text Component</div>;
         break;
       case 'paragraph':
         newComponent = <div className="paragraph-component">Paragraph Component</div>;

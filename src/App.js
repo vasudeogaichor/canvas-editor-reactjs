@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Canvas from './components/Canvas';
@@ -11,19 +11,27 @@ import './App.css';
 const App = () => {
   const [currentComponents, setCurrentComponents] = useState([]);
   const [selectedComponent, setSelectedComponent] = useState(null);
+  const selectedRef = useRef(null);
 
   return (
     <Container fluid>
       <Row className="border m-2">
         <Col xs={8} className="p-2 border">
-          <Canvas components={currentComponents} 
-          selectedComponent={selectedComponent}
-          setSelectedComponent={setSelectedComponent}
-           className="canvas"/>
+          <Canvas
+            components={currentComponents}
+            selectedComponent={selectedComponent}
+            setSelectedComponent={setSelectedComponent}
+            selectedRef={selectedRef}
+            className="canvas"
+          />
         </Col>
         <Col xs={4} className="p-2 border">
-        <Components setCurrentComponents={setCurrentComponents} />
-        <PropertiesPanel selectedComponent={selectedComponent} />
+          <Components setCurrentComponents={setCurrentComponents} />
+          <h2>Edit Attributes</h2>
+          <PropertiesPanel
+            selectedComponent={selectedComponent}
+            selectedRef={selectedRef}
+          />
         </Col>
       </Row>
     </Container>
