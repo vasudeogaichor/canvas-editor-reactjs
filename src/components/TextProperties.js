@@ -30,10 +30,14 @@ const TextProperties = ({ selectedComponent, handleEdit }) => {
                 <Form.Group controlId="formFontSize">
                     <Form.Label>Font Size</Form.Label>
                     <Form.Control
-                        type="text"
-                        value={selectedComponent?.style?.['font-size'] || '16px'}
-                        onChange={(e) => handleEdit('font-size', `${e.target.value}px`)}
-                    />
+                        as="select"
+                        value={selectedComponent?.style?.['font-size']}
+                        onChange={(e) => handleEdit('font-size', e.target.value)}
+                    >
+                        {Array.from({ length: 50 }, (_, index) => index + 5).map(size => (
+                            <option key={size} value={`${size}px`}>{size}px</option>
+                        ))}
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formFontWeight">
                     <Form.Label>Font Weight</Form.Label>

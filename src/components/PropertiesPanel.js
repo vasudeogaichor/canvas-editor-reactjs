@@ -1,5 +1,3 @@
-import { Form, InputGroup } from 'react-bootstrap';
-
 import TextProperties from './TextProperties';
 import ImageProperties from './ImageProperties';
 import '../styles/PropertiesPanel.css'
@@ -11,7 +9,6 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
   }
 
   const handleEdit = (attribute, value) => {
-    console.log('attribute, value - ', attribute, value)
     const currentStyle = selectedRef?.current?.getAttribute('style') || '';
 
     const currentStyleObject = currentStyle
