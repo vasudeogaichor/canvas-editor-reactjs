@@ -9,6 +9,7 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
   }
 
   const handleEdit = (attribute, value) => {
+    console.log(attribute, value);
     const currentStyle = selectedRef?.current?.getAttribute('style') || '';
 
     const currentStyleObject = currentStyle

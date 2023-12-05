@@ -18,12 +18,13 @@ const TextProperties = ({ selectedComponent, handleEdit }) => {
                     <Form.Label>Font Family</Form.Label>
                     <Form.Control
                         as="select"
-                        value={selectedComponent?.style?.['font-family'] || 'Arial'}
+                        value={selectedComponent?.style?.['font-family']}
                         onChange={(e) => handleEdit('font-family', e.target.value)}
                     >
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                         <option value="Helvetica">Helvetica</option>
+                        <option value="monospace">monospace</option>
                         {/* Add more font family options as needed */}
                     </Form.Control>
                 </Form.Group>
@@ -43,7 +44,7 @@ const TextProperties = ({ selectedComponent, handleEdit }) => {
                     <Form.Label>Font Weight</Form.Label>
                     <Form.Control
                         as="select"
-                        value={selectedComponent?.style?.['font-weight'] || 'normal'}
+                        value={selectedComponent?.style?.['font-weight']}
                         onChange={(e) => handleEdit('font-weight', e.target.value)}
                     >
                         <option value="normal">Normal</option>
