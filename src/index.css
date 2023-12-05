@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://img.freepik.com/free-photo/blue-wall-background_53876-88663.jpg?w=360&t=st=1701809888~exp=1701810488~hmac=4146a93ba224af5cf66450dc9e8ee95dcc0c8f285fbe0b60f0ffbbd8f2598dfc');
+  background-size: cover;
 }
 
 code {

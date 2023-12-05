@@ -34,17 +34,17 @@ const Components = ({ setCurrentComponents }) => {
       <Col>
         <Row className="component-buttons d-flex flex-column">
           <Col>
-            <Button variant="primary" onClick={() => handleButtonClick('text')} className="w-100 m-1">
+            <Button variant="info" onClick={() => handleButtonClick('text')} className="w-100 m-1">
               Add Text
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
+            <Button variant="info" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
               Add Paragraph
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={() => handleButtonClick('image')} className="w-100 m-1">
+            <Button variant="info" onClick={() => handleButtonClick('image')} className="w-100 m-1">
               Add Picture
             </Button>
           </Col>
