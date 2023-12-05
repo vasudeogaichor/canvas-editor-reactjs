@@ -2,7 +2,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import '../styles/Components.css';
 
-const Components = ({ setCurrentComponents }) => {    
+const Components = ({ setCurrentComponents }) => {
 
   const addComponent = (type) => {
     let newComponent;
@@ -29,26 +29,28 @@ const Components = ({ setCurrentComponents }) => {
   };
 
   return (
-    <Col>
-      <Row className="component-buttons d-flex flex-column">
-        <Col>
-          <Button variant="primary" onClick={() => handleButtonClick('text')} className="w-100 m-1">
-            Add Text
-          </Button>
-        </Col>
-        <Col>
-          <Button variant="primary" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
-            Add Paragraph
-          </Button>
-        </Col>
-        <Col>
-          <Button variant="primary" onClick={() => handleButtonClick('image')} className="w-100 m-1">
-            Add Picture
-          </Button>
-        </Col>
-      </Row>
-    </Col>
-
+    <>
+      <h2>Add Components</h2>
+      <Col>
+        <Row className="component-buttons d-flex flex-column">
+          <Col>
+            <Button variant="primary" onClick={() => handleButtonClick('text')} className="w-100 m-1">
+              Add Text
+            </Button>
+          </Col>
+          <Col>
+            <Button variant="primary" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
+              Add Paragraph
+            </Button>
+          </Col>
+          <Col>
+            <Button variant="primary" onClick={() => handleButtonClick('image')} className="w-100 m-1">
+              Add Picture
+            </Button>
+          </Col>
+        </Row>
+      </Col>
+    </>
   );
 };
 

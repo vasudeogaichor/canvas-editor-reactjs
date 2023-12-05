@@ -9,18 +9,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
-  const [selectedComponent, setSelectedComponent] = useState(null);
   const [currentComponents, setCurrentComponents] = useState([]);
+  const [selectedComponent, setSelectedComponent] = useState(null);
 
   return (
     <Container fluid>
       <Row className="border m-2">
         <Col xs={8} className="p-2 border">
-          <Canvas components={currentComponents} className="canvas"/>
+          <Canvas components={currentComponents} 
+          selectedComponent={selectedComponent}
+          setSelectedComponent={setSelectedComponent}
+           className="canvas"/>
         </Col>
         <Col xs={4} className="p-2 border">
         <Components setCurrentComponents={setCurrentComponents} />
-        {/* <PropertiesPanel selectedComponent={selectedComponent} /> */}
+        <PropertiesPanel selectedComponent={selectedComponent} />
         </Col>
       </Row>
     </Container>

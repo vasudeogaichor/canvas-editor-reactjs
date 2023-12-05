@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import '../styles/Canvas.css'
 
-const Canvas = ({ components }) => {
-  const [selectedComponent, setSelectedComponent] = useState(null);
+const Canvas = ({ components, selectedComponent, setSelectedComponent}) => {
 
   const handleSelect = (component) => {
     setSelectedComponent(component);
