@@ -1,0 +1,30 @@
+.components {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.components button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.components ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.components li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.components li:hover {
+  background-color: #ccc;
+}

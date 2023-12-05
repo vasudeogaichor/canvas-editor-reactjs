@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+}
+
+.canvas {
+  flex: 1;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.components {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.properties-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}

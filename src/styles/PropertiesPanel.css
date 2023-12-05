@@ -1,0 +1,12 @@
+.properties-panel {
+    margin-left: 20px;
+  }
+  
+  .property-input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
