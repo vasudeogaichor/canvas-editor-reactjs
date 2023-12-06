@@ -9,9 +9,19 @@ const Canvas = ({ components, selectedComponent, handleSelect}) => {
       <Row>
         <Col>
           <div className="canvas">
-            {components.map((component, index) => (
-              <Draggable key={index} onStop={() => handleSelect(component) } bounds="parent">
-                <div className={`draggable-component ${selectedComponent === component ? 'selected' : ''}`} >{component}</div>
+          {components.map((component, index) => (
+              <Draggable key={index} onStop={() => handleSelect(component)} bounds="parent">
+                <div
+                  className={`draggable-component ${selectedComponent === component ? 'selected' : ''}`}
+                  ref={(node) => {
+                    // 'node' is the DOM element you can directly reference
+                    if (node) {
+                      // Do any additional setup or logic here
+                    }
+                  }}
+                >
+                  {component}
+                </div>
               </Draggable>
             ))}
           </div>
