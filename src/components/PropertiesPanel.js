@@ -1,14 +1,23 @@
+import { useState } from 'react';
 import TextProperties from './TextProperties';
 import ImageProperties from './ImageProperties';
 import '../styles/PropertiesPanel.css'
 
 const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
-
+  const [internalText, setInternalText] = useState("")
+  
   if (!selectedComponent) {
     return null;
   }
 
-  const handleEdit = (attribute, value) => {
+  const handleTextEdit = (text) => {
+     if (selectedRef && selectedRef.current) {
+      selectedRef.current.innerText = text
+      setInternalText(text);
+    }
+  }
+
+  const handleStyleEdit = (attribute, value) => {
     console.log(attribute, value);
     const currentStyle = selectedRef?.current?.getAttribute('style') || '';
 
@@ -31,9 +40,26 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
   }
 
   if (['text-component', 'paragraph-component'].includes(selectedComponent.props.className)) {
-    return <><TextProperties handleEdit={handleEdit} selectedComponent={selectedComponent} /></>
+    return (
+      <>
+        <TextProperties
+          handleStyleEdit={handleStyleEdit}
+          selectedComponent={selectedComponent}
+          handleTextEdit={handleTextEdit}
+          internalText={internalText}
+        />
+      </>
+    );
   } else if (selectedComponent.props.className === 'image-component') {
-    return <><ImageProperties handleEdit={handleEdit} selectedComponent={selectedComponent} /></>
+    return (
+      <>
+        <ImageProperties
+          handleStyleEdit={handleStyleEdit}
+          selectedComponent={selectedComponent}
+          selectedRef={selectedRef}
+        />
+      </>
+    );
   }
 
   return null;
