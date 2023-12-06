@@ -3,12 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import '../styles/Canvas.css'
 
-const Canvas = ({ components, selectedComponent, setSelectedComponent, selectedRef}) => {
-
-  const handleSelect = (component) => {
-    setSelectedComponent(component);
-  };
-
+const Canvas = ({ components, selectedComponent, selectedRef, handleSelect}) => {
   return (
     <Container fluid>
       <Row>

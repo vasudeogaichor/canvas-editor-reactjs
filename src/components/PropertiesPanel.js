@@ -3,19 +3,11 @@ import TextProperties from './TextProperties';
 import ImageProperties from './ImageProperties';
 import '../styles/PropertiesPanel.css'
 
-const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
-  const [internalText, setInternalText] = useState("")
+const PropertiesPanel = ({ selectedComponent, selectedRef, handleStyleChange, handleAttributeChange, handleTextEdit, textContent }) => {
   const [imageSrc, setImageSrc] = useState('');
   
   if (!selectedComponent) {
     return null;
-  }
-
-  const handleTextEdit = (text) => {
-     if (selectedRef && selectedRef.current) {
-      selectedRef.current.innerText = text
-      setInternalText(text);
-    }
   }
 
   const handleStyleEdit = (attribute, value) => {
@@ -54,10 +46,10 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
     return (
       <>
         <TextProperties
-          handleStyleEdit={handleStyleEdit}
           selectedComponent={selectedComponent}
           handleTextEdit={handleTextEdit}
-          internalText={internalText}
+          handleStyleChange={handleStyleChange}
+          textContent={textContent}
         />
       </>
     );

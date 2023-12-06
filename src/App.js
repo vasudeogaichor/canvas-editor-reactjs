@@ -12,6 +12,77 @@ import './App.css';
 const App = () => {
   const [currentComponents, setCurrentComponents] = useState([]);
   const [selectedComponent, setSelectedComponent] = useState(null);
+  const [componentAttributes, setComponentAttributes] = useState({});
+  const [componentStyles, setComponentStyles] = useState({});
+  const [textContent, setTextContent] = useState('');
+  console.log('selectedComponent - ', selectedComponent)
+  const handleTextEdit = (text) => {
+    console.log('text - ', text)
+    if (selectedComponent) {
+      const updatedComponent = React.cloneElement(selectedComponent, { children: text });
+      setSelectedComponent(updatedComponent);
+      setCurrentComponents((prevComponents) =>
+        prevComponents.map((component) =>
+          component === selectedComponent ? updatedComponent : component
+        )
+      );
+    }
+    setTextContent(text);
+  };
+
+  const handleStyleChange = (style) => {
+    console.log('style - ', style)
+    setComponentStyles((prevStyles) => ({
+      ...prevStyles,
+      ...style,
+    }));
+
+    if (selectedComponent) {
+      setSelectedComponent((prevComponent) => {
+        const updatedComponent = React.cloneElement(prevComponent, {
+          style: { ...prevComponent.props.style, ...style },
+        });
+        const updatedComponents = currentComponents.map((component) =>
+          component === prevComponent ? updatedComponent : component
+        );
+        setCurrentComponents(updatedComponents);
+        return updatedComponent;
+      });
+    }
+  };
+
+  const handleAttributeChange = (attribute, value) => {
+    setComponentAttributes((prevAttributes) => ({
+      ...prevAttributes,
+      [attribute]: value,
+    }));
+
+    if (selectedComponent) {
+      setSelectedComponent((prevComponent) =>
+        React.cloneElement(prevComponent, { [attribute]: value })
+      );
+    }
+  };
+
+  const handleSelect = (component) => {
+    setSelectedComponent(component);
+    const existingAttributes = { ...component.props };
+    const existingStyles = { ...component.props.style };
+    setComponentAttributes({
+      ...existingAttributes,
+      ...componentAttributes,
+      ...component.props,
+    });
+
+    setComponentStyles({
+      ...existingStyles,
+      ...componentStyles,
+      ...component.props.style,
+    });
+
+    setTextContent(component.props.children);
+  };
+
   const selectedRef = useRef(null);
 
   const handleRemove = () => {
@@ -27,9 +98,9 @@ const App = () => {
           <Canvas
             components={currentComponents}
             selectedComponent={selectedComponent}
-            setSelectedComponent={setSelectedComponent}
             selectedRef={selectedRef}
             className="canvas"
+            handleSelect={handleSelect}
           />
         </Col>
         <Col xs={4} className="p-2 border">
@@ -42,6 +113,10 @@ const App = () => {
           <PropertiesPanel
             selectedComponent={selectedComponent}
             selectedRef={selectedRef}
+            handleAttributeChange={handleAttributeChange}
+            handleStyleChange={handleStyleChange}
+            handleTextEdit={handleTextEdit}
+            textContent={textContent}
           />
         </Col>
       </Row>

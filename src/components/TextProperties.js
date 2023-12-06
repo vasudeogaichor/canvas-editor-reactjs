@@ -1,6 +1,6 @@
 import { Form, InputGroup } from 'react-bootstrap';
 
-const TextProperties = ({ selectedComponent, handleStyleEdit, handleTextEdit, internalText }) => {
+const TextProperties = ({ selectedComponent, handleStyleChange, handleTextEdit, textContent }) => {
     return (
         <>
             <Form>
@@ -8,7 +8,7 @@ const TextProperties = ({ selectedComponent, handleStyleEdit, handleTextEdit, in
                     <Form.Label>Text</Form.Label>
                     <Form.Control
                         type="text"
-                        value={internalText || ''}
+                        value={textContent || ''}
                         onChange={(e) => handleTextEdit(e.target.value)}
                         placeholder="Enter text for the div"
                     />
@@ -19,7 +19,7 @@ const TextProperties = ({ selectedComponent, handleStyleEdit, handleTextEdit, in
                         <Form.Control
                             type="color"
                             value={selectedComponent?.style?.color}
-                            onChange={(e) => handleStyleEdit('color', e.target.value)}
+                            onChange={(e) => handleStyleChange({'color': e.target.value})}
                         />
                     </InputGroup>
                 </Form.Group>
@@ -27,22 +27,22 @@ const TextProperties = ({ selectedComponent, handleStyleEdit, handleTextEdit, in
                     <Form.Label>Font Family</Form.Label>
                     <Form.Control
                         as="select"
-                        value={selectedComponent?.style?.['font-family']}
-                        onChange={(e) => handleStyleEdit('font-family', e.target.value)}
+                        value={selectedComponent?.style?.['fontFamily']}
+                        onChange={(e) => handleStyleChange({'fontFamily': e.target.value})}
                     >
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                         <option value="Helvetica">Helvetica</option>
                         <option value="monospace">monospace</option>
-                        {/* Add more font family options as needed */}
+                        {/* TODO - replace with fonts library if possible */}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formFontSize">
                     <Form.Label>Font Size</Form.Label>
                     <Form.Control
                         as="select"
-                        value={selectedComponent?.style?.['font-size']}
-                        onChange={(e) => handleStyleEdit('font-size', e.target.value)}
+                        value={selectedComponent?.style?.['fontSize']}
+                        onChange={(e) => handleStyleChange({'fontSize': e.target.value})}
                     >
                         {Array.from({ length: 50 }, (_, index) => index + 5).map(size => (
                             <option key={size} value={`${size}px`}>{size}px</option>
@@ -53,8 +53,8 @@ const TextProperties = ({ selectedComponent, handleStyleEdit, handleTextEdit, in
                     <Form.Label>Font Weight</Form.Label>
                     <Form.Control
                         as="select"
-                        value={selectedComponent?.style?.['font-weight']}
-                        onChange={(e) => handleStyleEdit('font-weight', e.target.value)}
+                        value={selectedComponent?.style?.['fontWeight']}
+                        onChange={(e) => handleStyleChange({'fontWeight': e.target.value})}
                     >
                         <option value="normal">Normal</option>
                         <option value="bold">Bold</option>
