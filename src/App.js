@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Canvas from './components/Canvas';
@@ -15,9 +15,8 @@ const App = () => {
   const [componentAttributes, setComponentAttributes] = useState({});
   const [componentStyles, setComponentStyles] = useState({});
   const [textContent, setTextContent] = useState('');
-  console.log('selectedComponent - ', selectedComponent)
+
   const handleTextEdit = (text) => {
-    console.log('text - ', text)
     if (selectedComponent) {
       const updatedComponent = React.cloneElement(selectedComponent, { children: text });
       setSelectedComponent(updatedComponent);
@@ -31,7 +30,6 @@ const App = () => {
   };
 
   const handleStyleChange = (style) => {
-    console.log('style - ', style)
     setComponentStyles((prevStyles) => ({
       ...prevStyles,
       ...style,
@@ -56,11 +54,23 @@ const App = () => {
       ...prevAttributes,
       [attribute]: value,
     }));
-
+  
     if (selectedComponent) {
-      setSelectedComponent((prevComponent) =>
-        React.cloneElement(prevComponent, { [attribute]: value })
-      );
+      setSelectedComponent((prevComponent) => {
+        if (prevComponent && prevComponent.type === 'img') {
+          const updatedImgElement = React.cloneElement(prevComponent, {
+            [attribute]: value,
+          });
+  
+          const updatedComponents = currentComponents.map((component) =>
+            component === prevComponent ? updatedImgElement : component
+          );
+  
+          setCurrentComponents(updatedComponents);
+          return updatedImgElement;
+        }
+        return React.cloneElement(prevComponent, { [attribute]: value });
+      });
     }
   };
 
@@ -83,8 +93,6 @@ const App = () => {
     setTextContent(component.props.children);
   };
 
-  const selectedRef = useRef(null);
-
   const handleRemove = () => {
     const updatedComponents = currentComponents.filter((component, index) => index !== currentComponents.indexOf(selectedComponent));
     setSelectedComponent(null);
@@ -98,7 +106,6 @@ const App = () => {
           <Canvas
             components={currentComponents}
             selectedComponent={selectedComponent}
-            selectedRef={selectedRef}
             className="canvas"
             handleSelect={handleSelect}
           />
@@ -112,7 +119,6 @@ const App = () => {
           <h2>Edit Attributes</h2>
           <PropertiesPanel
             selectedComponent={selectedComponent}
-            selectedRef={selectedRef}
             handleAttributeChange={handleAttributeChange}
             handleStyleChange={handleStyleChange}
             handleTextEdit={handleTextEdit}
