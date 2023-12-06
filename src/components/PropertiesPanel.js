@@ -5,6 +5,7 @@ import '../styles/PropertiesPanel.css'
 
 const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
   const [internalText, setInternalText] = useState("")
+  const [imageSrc, setImageSrc] = useState('');
   
   if (!selectedComponent) {
     return null;
@@ -39,6 +40,16 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
     selectedRef?.current?.setAttribute('style', newStyle);
   }
 
+  const handleSrcChange = (e) => {
+    if (selectedRef && selectedRef.current) {
+      const imgElement = selectedRef.current.children[0];
+      if (imgElement) {
+        imgElement.src = e.target.value;
+      }
+      setImageSrc(e.target.value);
+    }
+  }
+
   if (['text-component', 'paragraph-component'].includes(selectedComponent.props.className)) {
     return (
       <>
@@ -55,7 +66,9 @@ const PropertiesPanel = ({ selectedComponent, selectedRef }) => {
       <>
         <ImageProperties
           handleStyleEdit={handleStyleEdit}
+          handleSrcChange={handleSrcChange}
           selectedComponent={selectedComponent}
+          imageSrc={imageSrc}
           selectedRef={selectedRef}
         />
       </>

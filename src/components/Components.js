@@ -14,7 +14,7 @@ const Components = ({ setCurrentComponents }) => {
         newComponent = <div className="paragraph-component">Paragraph Component</div>;
         break;
       case 'image':
-        newComponent = <div className="image-component">Image Component</div>;
+        newComponent = <img alt="Inserted Image" className='image-component' />;
         break;
       default:
         newComponent = <div className="default-component">Default Component</div>;
