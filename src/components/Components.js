@@ -38,11 +38,11 @@ const Components = ({ setCurrentComponents }) => {
               Add Text
             </Button>
           </Col>
-          <Col>
+          {/* <Col>
             <Button variant="info" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
               Add Paragraph
             </Button>
-          </Col>
+          </Col> */}
           <Col>
             <Button variant="info" onClick={() => handleButtonClick('image')} className="w-100 m-1">
               Add Picture
