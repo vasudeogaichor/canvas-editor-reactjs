@@ -101,8 +101,8 @@ const App = () => {
 
   return (
     <Container fluid>
-      <Row className="border m-2">
-        <Col xs={8} className="p-2 border">
+      <Row className="m-2">
+        <Col xs={8} className="p-2">
           <Canvas
             components={currentComponents}
             selectedComponent={selectedComponent}
@@ -110,7 +110,7 @@ const App = () => {
             handleSelect={handleSelect}
           />
         </Col>
-        <Col xs={4} className="p-2 border">
+        <Col xs={4} className="p-2">
           <Components setCurrentComponents={setCurrentComponents} />
           <DeleteComponentButton
             selectedComponent={selectedComponent}
