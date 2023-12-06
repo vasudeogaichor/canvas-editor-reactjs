@@ -5,7 +5,7 @@
   }
   
   .draggable-component {
-    border: 1px solid #ccc;
+    border: none;
     padding: 10px;
     cursor: grab;
     user-select: none;

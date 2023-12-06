@@ -1,4 +1,4 @@
-import { Button, Col, Row } from 'react-bootstrap';
+import { ButtonGroup, Button, Col, Row } from 'react-bootstrap';
 
 import '../styles/Components.css';
 
@@ -8,10 +8,7 @@ const Components = ({ setCurrentComponents }) => {
     let newComponent;
     switch (type) {
       case 'text':
-        newComponent = <div className="text-component" style={{}} >Text Component</div>;
-        break;
-      case 'paragraph':
-        newComponent = <div className="paragraph-component">Paragraph Component</div>;
+        newComponent = <div className="text-component" style={{}} >Dummy Text</div>;
         break;
       case 'image':
         newComponent = <img alt="Inserted Image" className='image-component' />;
@@ -30,26 +27,23 @@ const Components = ({ setCurrentComponents }) => {
 
   return (
     <>
-      <h2>Add Components</h2>
-      <Col>
-        <Row className="component-buttons d-flex flex-column">
-          <Col>
-            <Button variant="info" onClick={() => handleButtonClick('text')} className="w-100 m-1">
-              Add Text
-            </Button>
-          </Col>
-          {/* <Col>
-            <Button variant="info" onClick={() => handleButtonClick('paragraph')} className="w-100 m-1">
-              Add Paragraph
-            </Button>
-          </Col> */}
-          <Col>
-            <Button variant="info" onClick={() => handleButtonClick('image')} className="w-100 m-1">
-              Add Picture
-            </Button>
-          </Col>
-        </Row>
-      </Col>
+      <div className="component-section bg-light rounded p-2 border border-dark m-2">
+        <h2 className="section-heading">Add Components</h2>
+        <Col>
+          <Row className="component-buttons d-flex flex-column">
+            <Col>
+              <ButtonGroup vertical>
+                <Button variant="info" onClick={() => handleButtonClick('text')} className="w-100 m-1">
+                  Add Text
+                </Button>
+                <Button variant="info" onClick={() => handleButtonClick('image')} className="w-100 m-1">
+                  Add Picture
+                </Button>
+              </ButtonGroup>
+            </Col>
+          </Row>
+        </Col>
+      </div>
     </>
   );
 };

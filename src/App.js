@@ -116,6 +116,7 @@ const App = () => {
             selectedComponent={selectedComponent}
             handleRemove={handleRemove}
           />
+          <div className="bg-light rounded p-2 border border-dark m-2">
           <h2>Edit Attributes</h2>
           <PropertiesPanel
             selectedComponent={selectedComponent}
@@ -124,6 +125,7 @@ const App = () => {
             handleTextEdit={handleTextEdit}
             textContent={textContent}
           />
+          </div>
         </Col>
       </Row>
     </Container>

@@ -7,7 +7,7 @@ const PropertiesPanel = ({ selectedComponent, handleStyleChange, handleAttribute
     return null;
   }
 
-  if (['text-component', 'paragraph-component'].includes(selectedComponent.props.className)) {
+  if (selectedComponent.props.className === 'text-component') {
     return (
       <>
         <TextProperties
