@@ -94,9 +94,10 @@ const App = () => {
   };
 
   const handleRemove = () => {
-    const updatedComponents = currentComponents.filter((component, index) => index !== currentComponents.indexOf(selectedComponent));
+    setCurrentComponents((prevComponents) =>
+      prevComponents.filter((component) => component !== selectedComponent)
+    );
     setSelectedComponent(null);
-    setCurrentComponents(updatedComponents);
   };
 
   return (
