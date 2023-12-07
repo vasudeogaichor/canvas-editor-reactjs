@@ -3,13 +3,15 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import '../styles/Canvas.css'
 
-const Canvas = ({ components, selectedComponent, handleSelect}) => {
+const Canvas = ({ history, currentStep, selectedComponent, handleSelect }) => {
+
   return (
     <Container fluid>
+      
       <Row>
         <Col>
           <div className="canvas">
-          {components.map((component, index) => (
+            {history[currentStep - 1]?.map((component, index) => (
               <Draggable key={index} onStop={() => handleSelect(component)} bounds="parent">
                 <div
                   className={`draggable-component ${selectedComponent === component ? 'selected' : ''}`}

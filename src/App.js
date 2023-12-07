@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Canvas from './components/Canvas';
 import Components from './components/Components';
 import PropertiesPanel from './components/PropertiesPanel';
 import DeleteComponentButton from './components/DeleteComponentButton';
+import Actions from './components/Actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -15,6 +16,17 @@ const App = () => {
   const [componentAttributes, setComponentAttributes] = useState({});
   const [componentStyles, setComponentStyles] = useState({});
   const [textContent, setTextContent] = useState('');
+
+  const [history, setHistory] = useState([currentComponents]);
+  console.log('history - ', history)
+  const [currentStep, setCurrentStep] = useState(0);
+  console.log('currentStep - ', currentStep)
+
+  useEffect(() => {
+    // Update the history whenever a change occurs
+    setHistory((prevHistory) => [...prevHistory.slice(0, currentStep + 1), getCurrentCanvasState()]);
+    setCurrentStep((prevStep) => prevStep + 1);
+  }, [currentComponents]);
 
   const handleTextEdit = (text) => {
     if (selectedComponent) {
@@ -28,6 +40,25 @@ const App = () => {
     }
     setTextContent(text);
   };
+
+  const getCurrentCanvasState = () => {
+    // Return the current state of the entire canvas
+    return currentComponents.map((component) => ({ ...component }));
+  };
+
+
+  const handleUndo = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prevStep) => prevStep - 1);
+    }
+  };
+
+  const handleRedo = () => {
+    if (currentStep < history.length - 1) {
+      setCurrentStep((prevStep) => prevStep + 1);
+    }
+  };
+
 
   const handleStyleChange = (style) => {
     setComponentStyles((prevStyles) => ({
@@ -54,18 +85,18 @@ const App = () => {
       ...prevAttributes,
       [attribute]: value,
     }));
-  
+
     if (selectedComponent) {
       setSelectedComponent((prevComponent) => {
         if (prevComponent && prevComponent.type === 'img') {
           const updatedImgElement = React.cloneElement(prevComponent, {
             [attribute]: value,
           });
-  
+
           const updatedComponents = currentComponents.map((component) =>
             component === prevComponent ? updatedImgElement : component
           );
-  
+
           setCurrentComponents(updatedComponents);
           return updatedImgElement;
         }
@@ -103,9 +134,18 @@ const App = () => {
   return (
     <Container fluid>
       <Row className="m-2">
-        <Col xs={8} className="p-2">
+        <Col xs={1} className='d-flex flex-column action-column p-2'>
+          <Actions
+            handleRedo={handleRedo}
+            handleUndo={handleUndo}
+            history={history}
+            currentStep={currentStep}
+          />
+        </Col>
+        <Col xs={7} className="p-2">
           <Canvas
-            components={currentComponents}
+            history={history}
+            currentStep={currentStep}
             selectedComponent={selectedComponent}
             className="canvas"
             handleSelect={handleSelect}
@@ -118,17 +158,18 @@ const App = () => {
             handleRemove={handleRemove}
           />
           <div className="bg-light rounded p-2 border border-dark m-2">
-          <h2>Edit Attributes</h2>
-          <PropertiesPanel
-            selectedComponent={selectedComponent}
-            handleAttributeChange={handleAttributeChange}
-            handleStyleChange={handleStyleChange}
-            handleTextEdit={handleTextEdit}
-            textContent={textContent}
-          />
+            <h2>Edit Attributes</h2>
+            <PropertiesPanel
+              selectedComponent={selectedComponent}
+              handleAttributeChange={handleAttributeChange}
+              handleStyleChange={handleStyleChange}
+              handleTextEdit={handleTextEdit}
+              textContent={textContent}
+            />
           </div>
         </Col>
       </Row>
+
     </Container>
   );
 };
