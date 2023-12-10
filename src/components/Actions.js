@@ -1,4 +1,4 @@
-import { Col, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FaUndo, FaRedo } from "react-icons/fa";
 
 const Actions = ({ handleUndo, handleRedo, history, currentStep }) => {
