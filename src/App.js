@@ -18,9 +18,7 @@ const App = () => {
   const [textContent, setTextContent] = useState('');
 
   const [history, setHistory] = useState([currentComponents]);
-  console.log('history - ', history)
   const [currentStep, setCurrentStep] = useState(0);
-  console.log('currentStep - ', currentStep)
 
   useEffect(() => {
     // Update the history whenever a change occurs
