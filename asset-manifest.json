@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/blogs-frontend/static/css/main.e1cc100f.css",
-    "main.js": "/blogs-frontend/static/js/main.04f5eae3.js",
-    "static/js/787.29c8070f.chunk.js": "/blogs-frontend/static/js/787.29c8070f.chunk.js",
-    "index.html": "/blogs-frontend/index.html",
-    "main.e1cc100f.css.map": "/blogs-frontend/static/css/main.e1cc100f.css.map",
-    "main.04f5eae3.js.map": "/blogs-frontend/static/js/main.04f5eae3.js.map",
-    "787.29c8070f.chunk.js.map": "/blogs-frontend/static/js/787.29c8070f.chunk.js.map"
+    "main.css": "/canvas-editor-reactjs/static/css/main.e1cc100f.css",
+    "main.js": "/canvas-editor-reactjs/static/js/main.fb62e92b.js",
+    "static/js/787.29c8070f.chunk.js": "/canvas-editor-reactjs/static/js/787.29c8070f.chunk.js",
+    "index.html": "/canvas-editor-reactjs/index.html",
+    "main.e1cc100f.css.map": "/canvas-editor-reactjs/static/css/main.e1cc100f.css.map",
+    "main.fb62e92b.js.map": "/canvas-editor-reactjs/static/js/main.fb62e92b.js.map",
+    "787.29c8070f.chunk.js.map": "/canvas-editor-reactjs/static/js/787.29c8070f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1cc100f.css",
-    "static/js/main.04f5eae3.js"
+    "static/js/main.fb62e92b.js"
   ]
 }
