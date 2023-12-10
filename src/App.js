@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Canvas from './components/Canvas';
@@ -20,11 +20,16 @@ const App = () => {
   const [history, setHistory] = useState([currentComponents]);
   const [currentStep, setCurrentStep] = useState(0);
 
+  const getCurrentCanvasState = useCallback(() => {
+    // Return the current state of the entire canvas
+    return currentComponents.map((component) => ({ ...component }));
+  }, [currentComponents]);
+
   useEffect(() => {
     // Update the history whenever a change occurs
     setHistory((prevHistory) => [...prevHistory.slice(0, currentStep + 1), getCurrentCanvasState()]);
     setCurrentStep((prevStep) => prevStep + 1);
-  }, [currentComponents]);
+  }, [currentComponents, currentStep, getCurrentCanvasState]);
 
   const handleTextEdit = (text) => {
     if (selectedComponent) {
@@ -38,12 +43,6 @@ const App = () => {
     }
     setTextContent(text);
   };
-
-  const getCurrentCanvasState = () => {
-    // Return the current state of the entire canvas
-    return currentComponents.map((component) => ({ ...component }));
-  };
-
 
   const handleUndo = () => {
     if (currentStep > 0) {
