@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/canvas-editor-reactjs/static/css/main.e1cc100f.css",
-    "main.js": "/canvas-editor-reactjs/static/js/main.fb62e92b.js",
+    "main.js": "/canvas-editor-reactjs/static/js/main.4ff34ed0.js",
     "static/js/787.29c8070f.chunk.js": "/canvas-editor-reactjs/static/js/787.29c8070f.chunk.js",
     "index.html": "/canvas-editor-reactjs/index.html",
     "main.e1cc100f.css.map": "/canvas-editor-reactjs/static/css/main.e1cc100f.css.map",
-    "main.fb62e92b.js.map": "/canvas-editor-reactjs/static/js/main.fb62e92b.js.map",
+    "main.4ff34ed0.js.map": "/canvas-editor-reactjs/static/js/main.4ff34ed0.js.map",
     "787.29c8070f.chunk.js.map": "/canvas-editor-reactjs/static/js/787.29c8070f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1cc100f.css",
-    "static/js/main.fb62e92b.js"
+    "static/js/main.4ff34ed0.js"
   ]
 }
