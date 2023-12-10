@@ -11,7 +11,7 @@ const Components = ({ setCurrentComponents }) => {
         newComponent = <div className="text-component" style={{}} >Dummy Text</div>;
         break;
       case 'image':
-        newComponent = <img alt="Inserted Image" className='image-component' />;
+        newComponent = <img alt="" className='image-component' />;
         break;
       default:
         newComponent = <div className="default-component">Default Component</div>;
